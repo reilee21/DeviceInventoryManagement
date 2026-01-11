@@ -1,6 +1,6 @@
-# 📱 Mobile Device Inventory Management System
+# 📱 Device Inventory Management System
 
-A full-stack system for managing mobile device inventory with **item-level tracking (IMEI / Serial)**, covering **purchase, stock, sales, installment payments**, and **auditability**.
+A full-stack system for managing device inventory with **item-level tracking (IMEI / Serial)**, covering **purchase, stock, sales, installment payments**, and **auditability**.
 
 > This project focuses on modeling **real-world inventory operations** with clean architecture and explicit business workflows.
 
