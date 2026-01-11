@@ -1,0 +1,45 @@
+﻿version: '3.8'
+
+services:
+  postgres:
+    image: postgres:18.1
+    container_name: postegres_dev
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=inventory_mgm
+    volumes:
+      - pgdata_dev:/var/lib/postgresql/data
+    networks:
+      - default_network
+
+  be:
+    build:
+      context: ../be
+      dockerfile: ../_docker/be.dev.Dockerfile
+    container_name: invt_mgm_be_dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=password123
+      - DB_NAME=inventory_mgm
+      - JWT_SECRET=supersecretjwtkey12345
+      - JWT_EXPIRES_IN=1d
+    depends_on:
+      - postgres
+    networks:
+      - default_network
+
+networks:
+  default_network:
+    driver: bridge
+
+volumes:
+  pgdata_dev:
